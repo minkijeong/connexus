@@ -29,7 +29,7 @@ function extractUserRow($row){
     return $user;
 }
 
-$methods = array("GET","POST","PUT");
+$methods = array("GET");
 $method = $_SERVER['REQUEST_METHOD'];
 if ( $method == "GET"){
     header('Content-Type: application/json');
@@ -65,6 +65,11 @@ if ( $method == "GET"){
     } else {
         die(mysqli_error());
     }
+}
+else if ( $method == "OPTIONS"){
+    header("Access-Control-Allow-Methods: ".implode(",",$methods));
+    header("Access-Control-Allow-Headers: content-type");
+
 }
 else{
     header("HTTP/1.0 405 Method Not Allowed");

@@ -31,6 +31,7 @@ function extractRow($row){
     $job->last_modified = $row->last_modified;
     return $job;
 }
+$methods = array("GET","POST");
 $method = $_SERVER['REQUEST_METHOD'];
 if ( $method == "GET") {
     header('Content-Type: application/json');
@@ -98,8 +99,10 @@ else if ( $method == "POST"){
         }
     }
 }
-else if ( $method == "PUT"){
-    header("HTTP/1.0 405 Method Not Allowed");
+else if ( $method == "OPTIONS"){
+    header("Access-Control-Allow-Methods: ".implode(",",$methods));
+    header("Access-Control-Allow-Headers: content-type");
+
 }
 else{
     header("HTTP/1.0 405 Method Not Allowed");
