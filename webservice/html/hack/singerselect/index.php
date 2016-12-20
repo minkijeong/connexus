@@ -1,7 +1,7 @@
 <?php
 $object_name = "user";
 require "../../../config.php";
-
+require "../job/job_func.php";
 
 function getUser($id){
     global $mysqli;
@@ -60,7 +60,19 @@ if ( $method == "GET"){
             $user = getUser($row->id);
             $json = new stdClass();
             $json->$object_name = $user;
-            echo json_encode($json,JSON_NUMERIC_CHECK);
+
+            //ADD NEW JOB
+            $job = new stdClass();
+            $job->userid = $row->id;
+            $job->status = "new";
+            $job->content = "created by singer selection service";
+            $job_id = addJob($job);
+            if ($job_id == "" ) {
+                header('HTTP/1.1 500 Internal Server Error');
+            } else {
+                $json->$object_name->job_id  = $job_id; // Attach New Job ID
+                echo json_encode($json,JSON_NUMERIC_CHECK);
+            }
         }
     } else {
         die(mysqli_error());
