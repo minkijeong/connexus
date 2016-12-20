@@ -1,0 +1,86 @@
+-- MySQL dump 10.14  Distrib 5.5.52-MariaDB, for Linux (x86_64)
+--
+-- Host: localhost    Database: wip
+-- ------------------------------------------------------
+-- Server version	5.5.52-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `job_status`
+--
+
+DROP TABLE IF EXISTS `job_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `job_status` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `status` enum('new','processing','completed','failed') DEFAULT NULL,
+  `content` varchar(65500) DEFAULT NULL,
+  `last_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `job_status`
+--
+
+LOCK TABLES `job_status` WRITE;
+/*!40000 ALTER TABLE `job_status` DISABLE KEYS */;
+INSERT INTO `job_status` VALUES (1,'processing',NULL,'2016-12-19 22:45:09'),(2,'processing',NULL,'2016-12-19 23:13:39'),(3,'processing',NULL,'2016-12-19 23:41:03'),(4,'processing',NULL,'2016-12-19 23:43:08'),(5,'processing',NULL,'2016-12-19 23:45:15'),(6,'processing',NULL,'2016-12-19 23:46:51'),(7,'processing',NULL,'2016-12-20 00:00:03'),(8,'processing',NULL,'2016-12-20 00:03:51'),(9,'processing',NULL,'2016-12-20 00:20:29'),(10,'processing',NULL,'2016-12-20 00:20:31'),(11,'processing',NULL,'2016-12-20 00:24:03'),(12,'processing',NULL,'2016-12-20 00:24:05'),(13,'processing',NULL,'2016-12-20 00:24:52'),(14,'processing',NULL,'2016-12-20 00:27:09'),(15,'processing',NULL,'2016-12-20 00:40:49'),(16,'processing',NULL,'2016-12-20 00:41:18'),(17,'processing',NULL,'2016-12-20 00:42:41'),(18,'processing',NULL,'2016-12-20 00:43:19'),(19,'processing',NULL,'2016-12-20 00:46:03'),(20,'processing',NULL,'2016-12-20 00:47:49'),(21,'processing',NULL,'2016-12-20 00:48:51'),(22,'processing',NULL,'2016-12-20 00:48:57'),(23,'processing',NULL,'2016-12-20 00:50:36'),(24,'processing',NULL,'2016-12-20 00:50:40'),(25,'processing',NULL,'2016-12-20 00:53:15'),(26,'processing',NULL,'2016-12-20 00:54:46'),(27,'processing',NULL,'2016-12-20 00:56:58'),(28,'processing',NULL,'2016-12-20 00:58:30'),(29,'processing',NULL,'2016-12-20 02:09:32'),(30,'processing',NULL,'2016-12-20 02:10:45'),(31,'processing',NULL,'2016-12-20 02:11:47'),(32,'processing',NULL,'2016-12-20 02:12:33'),(33,'processing',NULL,'2016-12-20 02:15:04'),(34,'processing',NULL,'2016-12-20 02:16:04'),(35,'processing',NULL,'2016-12-20 02:17:08'),(36,'processing',NULL,'2016-12-20 02:17:32'),(37,'processing',NULL,'2016-12-20 02:18:29'),(38,'processing',NULL,'2016-12-20 02:19:12'),(39,'processing',NULL,'2016-12-20 02:20:55'),(40,'processing',NULL,'2016-12-20 02:30:14'),(41,'processing',NULL,'2016-12-20 02:31:00'),(42,'processing',NULL,'2016-12-20 02:33:24'),(43,'processing',NULL,'2016-12-20 02:33:46'),(44,'processing',NULL,'2016-12-20 02:34:46'),(45,'processing',NULL,'2016-12-20 02:35:10'),(46,'processing',NULL,'2016-12-20 02:35:32'),(47,'processing',NULL,'2016-12-20 02:37:22'),(48,'processing',NULL,'2016-12-20 02:39:17'),(49,'processing',NULL,'2016-12-20 02:39:22'),(50,'processing',NULL,'2016-12-20 02:40:14'),(51,'processing',NULL,'2016-12-20 02:40:35'),(52,'processing',NULL,'2016-12-20 02:41:09'),(53,'processing',NULL,'2016-12-20 02:41:31'),(54,'processing',NULL,'2016-12-20 02:42:05'),(55,'processing',NULL,'2016-12-20 02:42:27'),(56,'processing',NULL,'2016-12-20 02:43:04'),(57,'processing',NULL,'2016-12-20 02:43:10'),(58,'processing',NULL,'2016-12-20 02:55:57'),(59,'processing',NULL,'2016-12-20 02:56:19');
+/*!40000 ALTER TABLE `job_status` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `is_song` tinyint(1) NOT NULL DEFAULT '0',
+  `is_console` tinyint(1) NOT NULL DEFAULT '0',
+  `is_buyside` tinyint(1) NOT NULL DEFAULT '0',
+  `is_sellside` tinyint(1) NOT NULL DEFAULT '0',
+  `is_mentor` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'DUCHEOL','dkim@appnexus.com','2154500019',0,0,0,0,0);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2016-12-20  0:19:00
