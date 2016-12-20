@@ -1,2 +1,21 @@
 # Create DB
 create database wip;
+
+# After putting table creation based on the schema on Dec. 19th
+# - see mysql_dbdump.wip.out file for the data snapshot
+
+#
+use wip
+ALTER TABLE user
+ADD COLUMN password CHAR(32) DEFAULT "" NOT NULL,
+ADD COLUMN login_status tinyint(1) DEFAULT 0 NOT NULL,
+ADD COLUMN avail_status tinyint(1) DEFAULT 0 NOT NULL AFTER phone;
+
+# setup up default password
+UPDATE user SET password = MD5("pwpw") WHERE password = "";
+
+# TODO - Following needs to be improved in order to handle user ID with data integrity
+# userid can be optional now in job input
+DELETE FROM job_status;
+ALTER TABLE job_status
+ADD COLUMN userid INT(10) UNSIGNED DEFAULT 1;
