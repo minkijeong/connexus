@@ -1,10 +1,10 @@
 {
   "user": {
-    "username": "mjeong4",
-    "email": "mjeong4@appnexus.com",
-    "phone": "0000000004",
+    "username": "dan",
+    "email": "bkang@appnexus.com",
+    "phone": "2122122121",
     "password": "wpwp",
-    "is_song": 0,
+    "is_song": 1,
     "is_console": 0,
     "is_mentor": 0
   }
